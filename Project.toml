@@ -1,0 +1,7 @@
+name = "MlappToolkit"
+uuid = "3be7d311-b964-44e0-9746-3fbb7e36c3e6"
+authors = ["Kwanghyeon Jeong <sivistys@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+Lazy = "50d2b5c4-7a5e-59d5-8109-a42b560f39c0"
