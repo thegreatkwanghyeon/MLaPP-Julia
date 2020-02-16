@@ -12,7 +12,7 @@ export
 Hypothesis,
 
 ## Methods
-createHypSpace,
+sequence,
 pmf,
 likelihood,
 prior,
