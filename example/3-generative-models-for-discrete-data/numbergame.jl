@@ -121,9 +121,11 @@ bar3 = bar(
 result = plot(bar1, bar2, bar3, layout = grid(1, 3))
 png(result, "figure-3-4")
 
+
 # Fig 3-4
 
 hypSpace2 = Vector{Hypothesis}()
+𝒟 = 16
 
 push!(hypSpace2, Hypothesis("Powers of 4", 0.1, x -> 4^x))
 push!(hypSpace2, Hypothesis("Powers of 2", 0.1, x -> 2^x))
@@ -154,10 +156,17 @@ for (i, h) in enumerate(hypSpace2)
     append!(dataY, repeat([hypLength2 - i + 1], seq |> length))
 end
 
-scatter(dataX, dataY,
+p1 = scatter(dataX, dataY,
     xticks = false,
     yticks = (1:hypLength, reverse(hypNames2)),
     xaxis = false,
     ylims = (0, 11),
+    legend = false
+)
+
+p2 = histogram(dataX,
+    bins = 0:100,
+    xticks = 4:4:100,
+    grid = false,
     legend = false
 )
