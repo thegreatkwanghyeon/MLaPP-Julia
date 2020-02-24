@@ -29,4 +29,4 @@ bar2 = bar(
 )
 
 result = plot(bar1, bar2, grid = 2, size=(1000, 600))
-png(result, "Figure-3-7")
+png(result, "figure-3-7")
