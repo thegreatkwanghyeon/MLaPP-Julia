@@ -119,7 +119,7 @@ bar3 = bar(
 )
 
 result = plot(bar1, bar2, bar3, layout = grid(1, 3))
-png(result, "figure-3-4")
+png(result, "figure-3-3")
 
 
 # Fig 3-4
@@ -156,17 +156,47 @@ for (i, h) in enumerate(hypSpace2)
     append!(dataY, repeat([hypLength2 - i + 1], seq |> length))
 end
 
-p1 = scatter(dataX, dataY,
-    xticks = false,
-    yticks = (1:hypLength, reverse(hypNames2)),
-    xaxis = false,
-    ylims = (0, 11),
-    legend = false
-)
-
-p2 = histogram(dataX,
+p1 = histogram(dataX,
     bins = 0:100,
     xticks = 4:4:100,
+    xlims = (0, 100),
+    yaxis = false,
+    tickfontsize = 6,
     grid = false,
     legend = false
 )
+
+p2 = scatter(dataX, dataY,
+    xticks = false,
+    yticks = (1:hypLength, reverse(hypNames2)),
+    xaxis = false,
+    xlims = (0, 100),
+    ylims = (0, 11),
+    legend = false,
+    tickdir = :out
+)
+
+
+p3 = plot(
+    posterior.(Ref([16]), hypSpace2, Ref(hypSpace2), l),
+    reverse(1:10),
+    shape = :circle,
+    xlims = (0, 1),
+    xticks = 0:0.5:1,
+    xlabel = "p(h|16)",
+    yticks = false,
+    ylims = (0, 11),
+    grid = false,
+    legend = false
+)
+
+empty = plot(
+    axis = false,
+    grid = false,
+    legend = false
+)
+
+g = @layout [a{0.2h} b; c{0.8w} d{0.2w}]
+
+result = plot(p1, empty, p2, p3, layout = g)
+png(result, "figure-3-4")
