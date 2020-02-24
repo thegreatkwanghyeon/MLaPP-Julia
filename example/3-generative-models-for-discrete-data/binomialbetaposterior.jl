@@ -14,7 +14,7 @@ p1 = plot(
 
 plot!(
     pointX,
-    pdf.(Beta(5, 19), pointX),
+    pdf.(Beta(4, 18), pointX),
     label = "lik Be(4.0, 18.0)",
     linecolor = :blue,
     linestyle = :dash,
@@ -23,7 +23,7 @@ plot!(
 
 plot!(
     pointX,
-    pdf.(Beta(4, 18), pointX),
+    pdf.(Beta(5, 19), pointX),
     label = "post Be(5.0, 19.0)",
     linecolor = :black,
     linestyle = :dash,
