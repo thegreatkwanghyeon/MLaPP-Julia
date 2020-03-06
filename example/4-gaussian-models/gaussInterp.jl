@@ -1,19 +1,20 @@
 using Random
 using LinearAlgebra
 using Plots
+using Distributions
 
-Random.seed!(33)
+Random.seed!(4)
 
 nInterval = 150
 nObs = 10
-λ = [30, 10]
+λ = [30, 3]
 
 perm = randperm(nInterval)
 
 pointX = range(0, 1, length = 150) |> collect
 obsIdx = perm[1:nObs]
 hidIdx = perm[nObs+1:nInterval]
-obs = rand(nObs)
+obs = rand(Normal(0, 1), nObs)
 
 leftmost = vcat(-1, repeat([0], nInterval - 3))
 offDiagonal = repeat([-1], nInterval - 3)
@@ -38,7 +39,7 @@ for i in 1:length(λ)
     posteriorΣ = inv(Λ11)
 
     band = zeros(nInterval)
-    band[hidIdx] = 2 * diag(posteriorΣ)
+    band[hidIdx] = 2 * sqrt.(diag(posteriorΣ))
 
 
     x̄ = zeros(nInterval)
